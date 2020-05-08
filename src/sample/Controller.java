@@ -43,7 +43,7 @@ public class Controller implements Initializable{
     /**
      * javadoc bla bla bla
      * */
-    public void clearBtnHandler(ActionEvent event) {
+    public void clearBtnHandler (ActionEvent event) {
         textBox.clear();
     }
 
@@ -61,19 +61,20 @@ public class Controller implements Initializable{
 
             try {
                 if (text.isEmpty()) showDialog("Please enter your ID before running queue number");
+                //condition if ID is used before
+                //if it is -> pop up error
+                //showDialog("This ID has already used for this item.");
+
+                //if not -> pop up queue card window
+                window = (Stage) queueButtton.getScene().getWindow();
+                root = FXMLLoader.load(getClass().getResource("queueCard.fxml"));
+//                showDialog("Go to queue card display");
 
             } catch (NumberFormatException nfe) {
                 textBox.setPromptText("Please enter number");
             } catch (NullPointerException npe) {
                 textBox.setPromptText("Please enter goddamn number");
-                //condition if ID is used before
-                //if it is -> pop up error
-//            showDialog("This ID has already used for this item.");
 
-                //if not
-                window = (Stage) queueButtton.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("queueCard.fxml"));
-                showDialog("Go to queue card display");
             }
         }
 
