@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="menuPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="506.0" text="KU COVID-19 Giveaway queue runner" textAlignment="CENTER" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <font>
+            <Font name="Impact" size="30.0" />
+         </font>
+         <padding>
+            <Insets top="23.0" />
+         </padding>
+      </Label>
+      <ImageView fx:id="itemImage" fitHeight="119.0" fitWidth="159.0" layoutX="306.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
+      <ComboBox fx:id="itemBox" layoutX="28.0" layoutY="117.0" prefHeight="31.0" prefWidth="252.0" promptText="Select an item you want to claim" />
+      <Button fx:id="proceedButton" layoutX="338.0" layoutY="288.0" mnemonicParsing="false" onAction="#SceneBtnHandler" prefHeight="31.0" prefWidth="138.0" text="Proceed">
+         <font>
+            <Font name="FreesiaUPC" size="32.0" />
+         </font>
+      </Button>
+      <Button fx:id="exitButton" layoutX="28.0" layoutY="287.0" mnemonicParsing="false" onAction="#exitBtnHandler" prefHeight="47.0" prefWidth="82.0" text="Exit">
+         <font>
+            <Font name="FreesiaUPC" size="33.0" />
+         </font>
+      </Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="303.0" prefHeight="0.0" prefWidth="159.0" text="By Nutta Sittipongpanich" textAlignment="CENTER">
+         <font>
+            <Font name="FreesiaUPC" size="18.0" />
+         </font>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="146.0" layoutY="319.0" prefHeight="0.0" prefWidth="159.0" text="Version 1.0" textAlignment="CENTER">
+         <font>
+            <Font name="FreesiaUPC" size="18.0" />
+         </font>
+         <padding>
+            <Insets top="2.0" />
+         </padding>
+      </Label>
+   </children>
+</AnchorPane>
