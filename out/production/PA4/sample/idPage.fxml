@@ -4,13 +4,13 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="idPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="idPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.IdPageController">
    <children>
       <TextField fx:id="textBox" layoutX="61.0" layoutY="195.0" prefHeight="32.0" prefWidth="286.0" promptText="Please enter you ID">
          <font>
             <Font name="FreesiaUPC" size="19.0" />
          </font></TextField>
-      <Button fx:id="clearButton" layoutX="357.0" layoutY="195.0" mnemonicParsing="false" onAction="#clearBtnHandler" prefHeight="32.0" prefWidth="78.0" text="Clear">
+      <Button fx:id="clearButton" layoutX="357.0" layoutY="195.0" mnemonicParsing="false" onAction="#setClearButton" prefHeight="32.0" prefWidth="78.0" text="Clear">
          <font>
             <Font name="FreesiaUPC" size="22.0" />
          </font>
@@ -20,12 +20,12 @@
             <Font name="Leelawadee Bold" size="28.0" />
          </font>
       </Label>
-      <Button fx:id="queueButtton" layoutX="355.0" layoutY="291.0" mnemonicParsing="false" onAction="#SceneBtnHandler" prefHeight="38.0" prefWidth="119.0" text="Run queue">
+      <Button fx:id="queueButtton" layoutX="355.0" layoutY="291.0" mnemonicParsing="false" onAction="#setQueueButton" prefHeight="38.0" prefWidth="119.0" text="Run queue">
          <font>
             <Font name="FreesiaUPC" size="25.0" />
          </font>
       </Button>
-      <Button fx:id="backButton" layoutX="27.0" layoutY="291.0" mnemonicParsing="false" onAction="#SceneBtnHandler" prefHeight="23.0" prefWidth="68.0" text="Back">
+      <Button fx:id="backButton" layoutX="27.0" layoutY="291.0" mnemonicParsing="false" onAction="#setBackButton" prefHeight="23.0" prefWidth="68.0" text="Back">
          <font>
             <Font name="FreesiaUPC" size="24.0" />
          </font>

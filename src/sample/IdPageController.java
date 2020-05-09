@@ -7,12 +7,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
-
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * javadoc bla bla bla
+ * */
 public class IdPageController implements Initializable{
     private Stage window;
     private Parent root;
@@ -30,27 +32,25 @@ public class IdPageController implements Initializable{
     /**
      * javadoc bla bla bla
      * */
-    public void exitBtnHandler (ActionEvent event) {
-        System.exit(1);
-    }
-
-    /**
-     * javadoc bla bla bla
-     * */
-    public void clearBtnHandler (ActionEvent event) {
+    public void setClearButton (ActionEvent event) {
         textBox.clear();
     }
 
     /**
      * javadoc bla bla bla
      * */
-    public void SceneBtnHandler(ActionEvent event) throws Exception {
-        if (event.getSource() == proceedButton) {
-            window = (Stage) proceedButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
-        }
+    public void setBackButton (ActionEvent event) throws IOException {
+        window = (Stage) backButton.getScene().getWindow();
+        root = FXMLLoader.load(getClass().getResource("menuPage.fxml"));
+        Scene scene = new Scene(root);
+        window.setScene(scene);
+        window.show();
+    }
 
-        else if (event.getSource() == queueButtton) {
+    /**
+     * javadoc bla bla bla
+     * */
+    public void setQueueButton (ActionEvent event) throws Exception {
             String text = textBox.getText();
 
             try {
@@ -62,6 +62,9 @@ public class IdPageController implements Initializable{
                     window = new Stage();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
                     root = (Parent) fxmlLoader.load();
+                    Scene scene = new Scene(root);
+                    window.setScene(scene);
+                    window.show();
                     alreadyLogIn = true;
                 }
                 root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
@@ -70,16 +73,6 @@ public class IdPageController implements Initializable{
             } catch (NullPointerException npe) {
                 textBox.setPromptText("Please enter goddamn number");
             }
-        }
-
-        else{
-            window = (Stage) backButton.getScene().getWindow();
-            root = FXMLLoader.load(getClass().getResource("menuPage.fxml"));
-            }
-
-        Scene scene = new Scene(root);
-        window.setScene(scene);
-        window.show();
     }
 
     /**

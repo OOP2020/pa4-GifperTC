@@ -9,6 +9,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+/**
+ * javadoc bla bla bla
+ * */
 public class MenuPageController {
 
     @FXML
@@ -23,14 +26,14 @@ public class MenuPageController {
     /**
      * javadoc bla bla bla
      * */
-    public void exitBtnHandler (ActionEvent event) {
+    public void setExitButton (ActionEvent event) {
         System.exit(1);
     }
 
     /**
      * javadoc bla bla bla
      * */
-    public void SceneBtnHandler(ActionEvent event) throws Exception {
+    public void setProceedButton(ActionEvent event) throws Exception {
         Stage window = (Stage) proceedButton.getScene().getWindow();
         Parent root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
         Scene scene = new Scene(root);

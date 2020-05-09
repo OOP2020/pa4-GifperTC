@@ -6,7 +6,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * javadoc bla bla bla
+ * */
 public class Main extends Application {
+
+    /**
+     * javadoc bla bla bla
+     * */
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("menuPage.fxml"));
