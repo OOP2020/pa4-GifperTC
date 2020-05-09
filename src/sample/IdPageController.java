@@ -13,19 +13,13 @@ import javafx.stage.Stage;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable{
+public class IdPageController implements Initializable{
     private Stage window;
-
     private Parent root;
+    private boolean alreadyLogIn = false;
 
     @FXML
     private TextField textBox;
-
-    @FXML
-    private ComboBox itemBox;
-
-    @FXML
-    private ImageView itemImage;
 
     @FXML
     private Label itemName;
@@ -61,20 +55,20 @@ public class Controller implements Initializable{
 
             try {
                 if (text.isEmpty()) showDialog("Please enter your ID before running queue number");
-                //condition if ID is used before
-                //if it is -> pop up error
-                //showDialog("This ID has already used for this item.");
-
-                //if not -> pop up queue card window
-                window = (Stage) queueButtton.getScene().getWindow();
-                root = FXMLLoader.load(getClass().getResource("queueCard.fxml"));
-//                showDialog("Go to queue card display");
-
+                else if(alreadyLogIn) {
+                    showDialog("This ID has already used for this item.");
+                }
+                else {
+                    window = new Stage();
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
+                    root = (Parent) fxmlLoader.load();
+                    alreadyLogIn = true;
+                }
+                root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
             } catch (NumberFormatException nfe) {
                 textBox.setPromptText("Please enter number");
             } catch (NullPointerException npe) {
                 textBox.setPromptText("Please enter goddamn number");
-
             }
         }
 

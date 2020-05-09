@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="menuPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane fx:id="menuPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuPageController">
    <children>
       <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="506.0" text="KU COVID-19 Giveaway queue runner" textAlignment="CENTER" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <font>
