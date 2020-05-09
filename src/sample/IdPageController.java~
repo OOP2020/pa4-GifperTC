@@ -86,7 +86,7 @@ public class IdPageController{
      * javadoc bla bla bla
      * */
     private static Map readFile(String fileName) {
-        File file = new File(fileName);
+        File file = new FileReader(fileName);
     }
 
     /**
