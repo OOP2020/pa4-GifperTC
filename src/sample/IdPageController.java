@@ -9,12 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.TreeMap;
 
 /**
  * javadoc bla bla bla
@@ -31,7 +30,7 @@ public class IdPageController{
     private Label itemName;
 
     @FXML
-    private Button proceedButton, exitButton, clearButton, queueButtton, backButton;
+    private Button clearButton, queueButton, backButton;
 
     /**
      * javadoc bla bla bla
@@ -56,15 +55,13 @@ public class IdPageController{
      * */
     public void setQueueButton (ActionEvent event) throws Exception {
             String text = textBox.getText();
+            Map<Integer, String> map = readDatabaseToMap();
 
             try {
                 if (text.isEmpty()) showDialog("Please enter your ID before running queue number");
-                else if(alreadyLogIn) {
+                else if(alreadyLogIn || map.containsValue(text)) {
                     showDialog("This ID has already used for this item.");
                 }
-//                else if(text){
-//
-//                }
                 else {
                     window = new Stage();
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
@@ -85,21 +82,58 @@ public class IdPageController{
     /**
      * javadoc bla bla bla
      * */
-    private static Map readFile(String fileName) {
-        File file = new File(fileName);
+    private static Map<Integer, String> readDatabaseToMap(String fileName) {
+        Map<Integer, String> map = new TreeMap<Integer, String>();
+        File file = new File (fileName);
+
+        if (!file.exists() || !file.isFile())
+            showDialog(fileName + " does not exist or is not a regular file.");
+        if (!file.canRead())
+            showDialog(fileName + " is not readable");
+
+        String line;
+
+        try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            String[] inline;
+            while((line = reader.readLine()) != null) {
+                inline = line.trim().split(" ");
+
+                int queueNumber = Integer.parseInt(inline[0].trim());
+                String idNumber = inline[1].trim();
+                map.put(queueNumber,idNumber);
+            }
+
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return map;
     }
+
+//    /**
+//     * javadoc bla bla bla
+//     * */
+//    private static void writeDatabase(Map map) throws Exception{
+//        FileWriter writer = new FileWriter(filename);
+//        BufferedWriter buffer = new BufferedWriter(writer);
+//        buffer.write();
+//    }
 
     /**
      * javadoc bla bla bla
      * */
-    private boolean compareId(String inputId) {
+    private boolean checkFile(String string) {
+//        if(string.)
 
+//        if (!file.exists() || !file.isFile())
+//            showDialog(fileName + " does not exist or is not a regular file.");
+//        if (!file.canRead())
+//            showDialog(fileName + " is not readable");
     }
 
     /**
      * Show alert dialog over the application box.
      * */
-    public void showDialog(String message) {
+    public static void showDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Error");
         alert.setHeaderText(message);
