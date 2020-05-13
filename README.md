@@ -25,7 +25,7 @@ java -jar KUCovidQueueRunner.jar
 ```
 java --module-path /path/to/your/JavaFX/lib --add-modules javafx.controls,javafx.fxml -jar KUCovidQueueRunner.jar
 ```
-#####(If these methods doesn't work I suggest you to run the Main.java directly from programming software)
+#####If these methods doesn't work I suggest you to run the Main.java directly from programming software
 
 ## Application components
 1. Menu page
