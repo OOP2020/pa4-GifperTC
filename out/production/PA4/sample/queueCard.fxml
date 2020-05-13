@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="481.0" prefWidth="394.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.QueueCardController">
+   <children>
+      <Line endX="230.79998779296875" layoutX="131.0" layoutY="240.0" startX="-100.0" />
+      <Label layoutX="31.0" layoutY="95.0" prefHeight="56.0" prefWidth="78.0" text="Your Id: " textAlignment="CENTER">
+         <font>
+            <Font name="Javanese Text" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="31.0" layoutY="128.0" prefHeight="56.0" prefWidth="131.0" text="Selected item: " textAlignment="CENTER">
+         <font>
+            <Font name="Javanese Text" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="31.0" layoutY="184.0" prefHeight="1.0" prefWidth="332.0" text="Your queue number is" textAlignment="CENTER">
+         <font>
+            <Font name="Javanese Text" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="queueDisplay" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="81.0" layoutY="183.0" prefHeight="187.0" prefWidth="230.0" textAlignment="CENTER">
+         <font>
+            <Font name="Javanese Text" size="67.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER_RIGHT" layoutX="110.0" prefHeight="92.0" prefWidth="171.0" text="Queue card">
+         <font>
+            <Font name="Javanese Text" size="33.0" />
+         </font>
+      </Label>
+      <Label fx:id="idDisplay" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="109.0" layoutY="95.0" prefHeight="56.0" prefWidth="114.0">
+         <font>
+            <Font name="Javanese Text" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="itemDisplay" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="162.0" layoutY="128.0" prefHeight="56.0" prefWidth="114.0">
+         <font>
+            <Font name="Javanese Text" size="20.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="10.0" layoutY="397.0" prefHeight="34.0" prefWidth="373.0" text="- Please give this card to the staff in order to claim your selected items.">
+         <font>
+            <Font name="Javanese Text" size="12.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" layoutX="27.0" layoutY="432.0" prefHeight="34.0" prefWidth="340.0" text="- This card can be only be generate and used once per person." textFill="RED">
+         <font>
+            <Font name="Javanese Text" size="12.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
