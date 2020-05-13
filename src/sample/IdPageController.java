@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import java.io.*;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.TreeMap;
@@ -18,10 +19,10 @@ import java.util.TreeMap;
  * javadoc bla bla bla
  * */
 public class IdPageController implements Initializable{
+    boolean alreadyLogIn = false;
     private String itemName;
     private Stage window;
     private Parent root;
-    private boolean alreadyLogIn = false;
     private int queueNumber;
 
     @FXML
@@ -56,20 +57,20 @@ public class IdPageController implements Initializable{
      * javadoc bla bla bla
      * */
     public void setQueueButton (ActionEvent event) throws Exception {
+
             Items item = ItemFactory.getItem(itemName);
             Map<Integer, String> map = readDatabaseToMap(item);
+            updateQueueNumber(map);
 
             String idNumber = textBox.getText();
 
             try {
                 if (idNumber.isEmpty()) showDialog("Please enter your ID before running queue number");
-                else if(alreadyLogIn || map.containsValue(idNumber)) {
-                    showDialog("This ID has already used for this item.");
-                }
                 else if (!map.containsValue(idNumber)) {
-                    alreadyLogIn = false;
                     queueNumber+=1;
+                    System.out.println(queueNumber);
                     item.writeDatabase(queueNumber,idNumber);
+
                     window = new Stage();
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
                     root = (Parent) loader.load();
@@ -78,9 +79,13 @@ public class IdPageController implements Initializable{
                     Scene scene = new Scene(root);
                     window.setScene(scene);
                     window.setResizable(false);
-                    window.show();
                     alreadyLogIn = true;
+                    window.showAndWait();
                 }
+                else if(alreadyLogIn || map.containsValue(idNumber)) {
+                    showDialog("This ID has already used for this item.");
+                }
+
                 else {
                     root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
                 }
@@ -94,27 +99,29 @@ public class IdPageController implements Initializable{
     /**
      * javadoc bla bla bla
      * */
-    private Map<Integer, String> readDatabaseToMap(Items item) {
-        Map<Integer, String> map = new TreeMap<Integer, String>();
+    public Map<Integer, String> readDatabaseToMap(Items item) {
         String fileName = item.getDatabase();
+        Map<Integer, String> map = new HashMap<Integer, String>();
         File file = new File (fileName);
 
         if(!file.exists() || !file.isFile()) System.out.println("Where is the fucking file");
         if(!file.canRead()) System.out.println("I cant read fuck you");
 
-        String line;
 
+        String line ;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+
             String[] inline;
-            while((line = reader.readLine()) != null) {
+
+            while((line= reader.readLine()) != null) {
                 inline = line.trim().split(" ");
 
-                int queueNumber = Integer.parseInt(inline[0].trim());
-                String idNumber = inline[1].trim();
-
-                if(!map.containsValue(idNumber)) {
+                if(inline.length == 2) {
+                    int queueNumber = Integer.parseInt(inline[0].trim());
+                    String idNumber = inline[1].trim();
                     map.put(queueNumber,idNumber);
                 }
+                
             }
         } catch (IOException ioe) {
             ioe.printStackTrace();
@@ -122,10 +129,14 @@ public class IdPageController implements Initializable{
         return map;
     }
 
+    public void updateQueueNumber (Map<Integer, String> map) {
+        queueNumber += Integer.parseInt(String.valueOf(map.values().size()));
+  }
+
     /**
      * Show alert dialog over the application box.
      * */
-    public static void showDialog(String message) {
+    public void showDialog(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Error");
         alert.setHeaderText(message);

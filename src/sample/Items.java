@@ -1,5 +1,7 @@
 package sample;
 
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -19,8 +21,11 @@ public enum Items{
     }
 
     public void writeDatabase(int queueNumber, String idNumber) throws IOException {
-        String output = String.format("%d %s\n",queueNumber,idNumber);
-        FileWriter writer = new FileWriter(this.getDatabase());
+        File file = new File(this.getDatabase());
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file,true));
+        String output = queueNumber + " " + idNumber + "\n";
         writer.write(output);
+        writer.flush();
+        writer.close();
     }
 }
