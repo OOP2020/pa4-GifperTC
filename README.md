@@ -25,6 +25,8 @@ java -jar KUCovidQueueRunner.jar
 ```
 java --module-path /path/to/your/JavaFX/lib --add-modules javafx.controls,javafx.fxml -jar KUCovidQueueRunner.jar
 ```
+#####(If these methods doesn't work I suggest you to run the Main.java directly from programming software)
+
 ## Application components
 1. Menu page
 2. Id input page
@@ -35,6 +37,7 @@ java --module-path /path/to/your/JavaFX/lib --add-modules javafx.controls,javafx
 (1) Select an item you want to claim from the combobox.
 
 ![alt text](https://i.imgur.com/epY1Vhj.jpg=50x)
+
 ![alt text](https://i.imgur.com/A172usI.png=50x)
 
 (2) Press the proceed button, and it will lead you to the id page, then type your KU student ID like in the example picture below.
