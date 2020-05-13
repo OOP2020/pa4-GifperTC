@@ -1,11 +1,26 @@
 package sample;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 
-public interface Items {
-    public File getDatabase() throws FileNotFoundException;
+public enum Items{
+    Facemask("src\\sample\\FaceMask.txt"),
+    Alcohol("src\\sample\\Alcohol.txt"),
+    Napkins("src\\sample\\Napkins.txt");
 
-    public void writeDatabase(int queueNumber, String idNumber) throws IOException;
+    private final String dataBase;
+
+    private Items(String dataBase) {
+        this.dataBase = dataBase;
+    }
+
+    public String getDatabase(){
+        return this.dataBase;
+    }
+
+    public void writeDatabase(int queueNumber, String idNumber) throws IOException {
+        String output = String.format("%d %s\n",queueNumber,idNumber);
+        FileWriter writer = new FileWriter(this.getDatabase());
+        writer.write(output);
+    }
 }

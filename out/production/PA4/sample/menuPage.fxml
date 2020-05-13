@@ -1,23 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
-
-<AnchorPane fx:id="menuPage" prefHeight="355.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuPageController">
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<AnchorPane fx:id="menuPage" prefHeight="310.0" prefWidth="499.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.MenuPageController">
    <children>
-      <Label fx:id="label" alignment="CENTER" contentDisplay="CENTER" prefHeight="92.0" prefWidth="506.0" text="KU COVID-19 Giveaway queue runner" textAlignment="CENTER" AnchorPane.bottomAnchor="263.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <Label fx:id="label" alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" layoutX="21.0" layoutY="14.0" prefHeight="96.0" prefWidth="458.0" text="KU COVID-19 Giveaway queue runner" textAlignment="CENTER" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="14.0">
          <font>
-            <Font name="Impact" size="30.0" />
+            <Font name="Javanese Text" size="26.0" />
          </font>
          <padding>
             <Insets top="23.0" />
          </padding>
+         <opaqueInsets>
+            <Insets bottom="8.0" top="-13.0" />
+         </opaqueInsets>
       </Label>
-      <ImageView fx:id="itemImage" fitHeight="119.0" fitWidth="159.0" layoutX="306.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true" />
-      <ComboBox fx:id="itemBox" layoutX="28.0" layoutY="117.0" prefHeight="31.0" prefWidth="252.0" promptText="Select an item you want to claim" />
+      <ComboBox fx:id="itemBox" layoutX="124.0" layoutY="141.0" prefHeight="31.0" prefWidth="236.0" promptText="Select an item you want to claim">
+         <items>
+            <FXCollections fx:factory="observableArrayList">
+            <String fx:value="Facemask"/>
+            <String fx:value="Alcohol"/>
+            <String fx:value="Napkins"/>
+            </FXCollections>
+         </items>
+         <opaqueInsets>
+            <Insets left="6.0" right="15.0" />
+         </opaqueInsets></ComboBox>
       <Button fx:id="proceedButton" layoutX="338.0" layoutY="288.0" mnemonicParsing="false" onAction="#setProceedButton" prefHeight="31.0" prefWidth="138.0" text="Proceed">
          <font>
             <Font name="FreesiaUPC" size="32.0" />
@@ -44,5 +56,6 @@
             <Insets top="2.0" />
          </padding>
       </Label>
+      <Line endX="216.60000610351562" endY="-1.52587890625E-5" layoutX="184.0" layoutY="110.0" startX="-100.0" />
    </children>
 </AnchorPane>

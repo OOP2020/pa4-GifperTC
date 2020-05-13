@@ -11,7 +11,7 @@
          <font>
             <Font name="FreesiaUPC" size="19.0" />
          </font></TextField>
-      <Button fx:id="clearButton" layoutX="357.0" layoutY="195.0" mnemonicParsing="false" onAction="#setClearButton" prefHeight="32.0" prefWidth="78.0" text="Clear">
+      <Button fx:id="clearButton" layoutX="355.0" layoutY="195.0" mnemonicParsing="false" onAction="#setClearButton" prefHeight="32.0" prefWidth="78.0" text="Clear">
          <font>
             <Font name="FreesiaUPC" size="22.0" />
          </font>
@@ -31,11 +31,6 @@
             <Font name="FreesiaUPC" size="24.0" />
          </font>
       </Button>
-      <Label fx:id="itemName" layoutX="162.0" layoutY="35.0" prefHeight="45.0" prefWidth="174.0">
-         <font>
-            <Font name="Impact" size="24.0" />
-         </font>
-      </Label>
       <Line endX="91.0" layoutX="254.0" layoutY="166.0" startX="-100.0" />
       <Line endX="183.0" layoutX="208.0" layoutY="95.0" startX="-100.0" />
    </children>

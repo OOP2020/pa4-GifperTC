@@ -1,25 +1,16 @@
 package sample;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-
 public class ItemFactory {
-    public static ItemName[] getItemName() {
-        return ItemName.values();
-    }
-
-    public static File getDatabase(String itemName) throws FileNotFoundException {
-        File database;
+    public static Items getItem(String itemName){
         switch (itemName) {
             case "Facemask":
-                return FaceMask.getDatabase();
+                return Items.Facemask;
             case "Alcohol":
-                return Alcohol.getDatabase();
-            case "Weight":
-                return FaceMask.getDatabase();
+                return Items.Alcohol;
+            case "Napkins":
+                return Items.Napkins;
             default:
-                return new Items()[0];
+                return Items.Facemask;
         }
     }
 }
-

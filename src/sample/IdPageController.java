@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
 import java.io.*;
 import java.net.URL;
 import java.util.Map;
@@ -18,16 +17,15 @@ import java.util.TreeMap;
 /**
  * javadoc bla bla bla
  * */
-public class IdPageController{
+public class IdPageController implements Initializable{
+    private String itemName;
     private Stage window;
     private Parent root;
     private boolean alreadyLogIn = false;
+    private int queueNumber;
 
     @FXML
     private TextField textBox;
-
-    @FXML
-    private Label itemName;
 
     @FXML
     private Button clearButton, queueButton, backButton;
@@ -50,46 +48,59 @@ public class IdPageController{
         window.show();
     }
 
+    public void setItemName(String itemName) {
+        this.itemName = itemName;
+    }
+
     /**
      * javadoc bla bla bla
      * */
     public void setQueueButton (ActionEvent event) throws Exception {
-            String text = textBox.getText();
-            Map<Integer, String> map = readDatabaseToMap();
+            Items item = ItemFactory.getItem(itemName);
+            Map<Integer, String> map = readDatabaseToMap(item);
+
+            String idNumber = textBox.getText();
 
             try {
-                if (text.isEmpty()) showDialog("Please enter your ID before running queue number");
-                else if(alreadyLogIn || map.containsValue(text)) {
+                if (idNumber.isEmpty()) showDialog("Please enter your ID before running queue number");
+                else if(alreadyLogIn || map.containsValue(idNumber)) {
                     showDialog("This ID has already used for this item.");
                 }
-                else {
+                else if (!map.containsValue(idNumber)) {
+                    alreadyLogIn = false;
+                    queueNumber+=1;
+                    item.writeDatabase(queueNumber,idNumber);
                     window = new Stage();
-                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
-                    root = (Parent) fxmlLoader.load();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("queueCard.fxml"));
+                    root = (Parent) loader.load();
+                    QueueCardController queueCardController = loader.getController();
+                    queueCardController.setLabel(idNumber, itemName, queueNumber);
                     Scene scene = new Scene(root);
                     window.setScene(scene);
+                    window.setResizable(false);
                     window.show();
                     alreadyLogIn = true;
                 }
-                root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
+                else {
+                    root = FXMLLoader.load(getClass().getResource("idPage.fxml"));
+                }
             } catch (NumberFormatException nfe) {
                 textBox.setPromptText("Please enter number");
             } catch (NullPointerException npe) {
-                textBox.setPromptText("Please enter goddamn number");
+                textBox.setPromptText("Please enter some number");
             }
     }
 
     /**
      * javadoc bla bla bla
      * */
-    private static Map<Integer, String> readDatabaseToMap(String fileName) {
+    private Map<Integer, String> readDatabaseToMap(Items item) {
         Map<Integer, String> map = new TreeMap<Integer, String>();
+        String fileName = item.getDatabase();
         File file = new File (fileName);
 
-        if (!file.exists() || !file.isFile())
-            showDialog(fileName + " does not exist or is not a regular file.");
-        if (!file.canRead())
-            showDialog(fileName + " is not readable");
+        if(!file.exists() || !file.isFile()) System.out.println("Where is the fucking file");
+        if(!file.canRead()) System.out.println("I cant read fuck you");
 
         String line;
 
@@ -100,34 +111,15 @@ public class IdPageController{
 
                 int queueNumber = Integer.parseInt(inline[0].trim());
                 String idNumber = inline[1].trim();
-                map.put(queueNumber,idNumber);
-            }
 
+                if(!map.containsValue(idNumber)) {
+                    map.put(queueNumber,idNumber);
+                }
+            }
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
         return map;
-    }
-
-//    /**
-//     * javadoc bla bla bla
-//     * */
-//    private static void writeDatabase(Map map) throws Exception{
-//        FileWriter writer = new FileWriter(filename);
-//        BufferedWriter buffer = new BufferedWriter(writer);
-//        buffer.write();
-//    }
-
-    /**
-     * javadoc bla bla bla
-     * */
-    private boolean checkFile(String string) {
-//        if(string.)
-
-//        if (!file.exists() || !file.isFile())
-//            showDialog(fileName + " does not exist or is not a regular file.");
-//        if (!file.canRead())
-//            showDialog(fileName + " is not readable");
     }
 
     /**
@@ -140,11 +132,8 @@ public class IdPageController{
         alert.showAndWait();
     }
 
-    /**
-     * javadoc bla bla bla
-     * */
-    public void initialize() {
-//        itemBox.getItems().addAll();
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
     }
 }
 
