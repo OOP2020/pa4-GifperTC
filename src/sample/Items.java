@@ -9,9 +9,9 @@ import java.io.IOException;
  * Enum class of give aways items that stores database file path of each items.
  * */
 public enum Items{
-    Facemask("out\\production\\PA4\\sample\\txt\\FaceMask.txt"),
-    Alcohol("out\\production\\PA4\\sample\\txt\\Alcohol.txt"),
-    Napkins("out\\production\\PA4\\sample\\txt\\Napkins.txt");
+    Facemask("src\\sample\\txt\\FaceMask.txt"),
+    Alcohol("src\\sample\\txt\\Alcohol.txt"),
+    Napkins("src\\sample\\txt\\Napkins.txt");
 
     private final String dataBase;
 
